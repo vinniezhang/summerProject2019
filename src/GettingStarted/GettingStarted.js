@@ -44,7 +44,7 @@ export class Start extends React.Component {
 
     isolateSchools(schools) {
         Object.keys(schools).map(function (key) {
-                console.log("in function: ", schools[key]);
+                // console.log("in function: ", schools[key]);
                 return <Typography>${schools[key]}</Typography>
         })
     };

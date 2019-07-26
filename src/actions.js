@@ -71,7 +71,7 @@ export const fetchData = (user) => {
     return (dispatch) => {
         return axios.get(URL).then((response) => {
             const schools = response.data.results;
-            // console.log("schools: ", schools);
+            console.log("schools: ", schools);
 
             Object.keys(schools).map(function (key){
                 school_names.push(schools[key]['school.name']);
