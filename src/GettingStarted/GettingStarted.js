@@ -10,12 +10,12 @@ import * as actionCreators from '../actions'
 import {fetchData, fetchSchools} from "../actions";
 
 
-export const isolateSchools = (schools) => {
-    Object.keys(schools).map(function (key) {
-        console.log("in function: ", schools[key]);
-        return <Typography>${schools[key]}</Typography>
-    })
-};
+// export const isolateSchools = (schools) => {
+//     Object.keys(schools).map(function (key) {
+//         console.log("in function: ", schools[key]);
+//         return <Typography>${schools[key]}</Typography>
+//     })
+// };
 
 export class Start extends React.Component {
 

@@ -66,6 +66,8 @@ export const fetchData = (user) => {
         URL = `https://api.data.gov/ed/collegescorecard/v1/schools?school.state=${state}&school.degrees_awarded.predominant=${has_degree},&latest.admissions.act_scores.midpoint.cumulative__range=${act_range}&latest.student.size__range=20000..&_page=0,1,2,&_per_page=100,&_fields=id,school.state,school.name,school.degrees_awarded.predominant_recoded,latest.admissions.sat_scores.average.overall,latest.admissions.act_scores.midpoint.cumulative,latest.student.size&api_key=${API_KEY}`;
     }
 
+    console.log("User: ", user);
+
     return (dispatch) => {
         return axios.get(URL).then((response) => {
             const schools = response.data.results;
