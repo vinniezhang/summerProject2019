@@ -9,7 +9,7 @@ export default function HomeText() {
     return (
             <main>
                 <Grid>
-                    <Typography style={{marginBottom:'20px', marginTop:'100px', color:'#4e4f52', textAlign:'center', paddingTop:'5%', fontFamily:'Helvetica', fontWeight:'bold'}} variant='h4'> Find Your College Match</Typography>
+                    <Typography style={{marginBottom:'20px', marginTop:'100px', color:'#4e4f52', textAlign:'center', paddingTop:'5%', paddingLeft:'2%', paddingRight:'2%', fontFamily:'Helvetica', fontWeight:'bold'}} variant='h4'> Find Your College Match</Typography>
 
                     <div style={{margin:'auto', width:'250px', height:'250px'}}>
                         <Image src={GradCap}/>
