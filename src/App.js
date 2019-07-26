@@ -3,8 +3,8 @@ import SideNav from './Components/SideNav';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import HomeText from './Components/Home';
 import ContactText from './Contact';
-import Start from './GettingStarted';
-import Results from './Results';
+import Start from './GettingStarted/GettingStarted';
+import Results from './Results/Results';
 
 function App() {
     return (
