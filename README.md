@@ -1,4 +1,4 @@
-This project can be accessed at [collegematcher.org](collegematcher.org).
+This project can be accessed at [https://collegematcher.org](https://collegematcher.org).
 
 
 ## Available Scripts
