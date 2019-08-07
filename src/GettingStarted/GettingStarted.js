@@ -8,15 +8,10 @@ import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 import * as actionCreators from '../actions'
-import {fetchData, fetchSchools} from "../actions";
+import {fetchData, fetchSchools, receiveData} from "../actions";
+import * as ReactDOM from "react-dom";
+import Paper from "@material-ui/core/Paper";
 
-
-// export const isolateSchools = (schools) => {
-//     Object.keys(schools).map(function (key) {
-//         console.log("in function: ", schools[key]);
-//         return <Typography>${schools[key]}</Typography>
-//     })
-// };
 
 export class Start extends React.Component {
 
@@ -42,15 +37,59 @@ export class Start extends React.Component {
         });
     };
 
-    isolateSchools(schools) {
-        Object.keys(schools).map(function (key) {
-                // console.log("in function: ", schools[key]);
-                return <Typography>${schools[key]}</Typography>
-        })
+    // isolateSchools(schools) {
+    //     Object.keys(schools).map(function (key){
+    //        console.log("in function: ", schools[key]);
+    //          return (
+    //             ReactDOM.render(
+    //                 (
+    //                     <React.Fragment>
+    //                         <Grid>
+    //                             {console.log("RECEIVED DATA: ", receiveData(schools).data)}
+    //                             <Grid>
+    //                                 {/*<Grid>{schools[key]}</Grid>*/}
+    //                                 <Grid><Typography>{receiveData(schools).data}</Typography></Grid>
+    //                             </Grid>
+    //                         </Grid>
+    //                     </React.Fragment>
+    //                 ), document.getElementById('resultsGrid')
+    //        ))
+    //     })
+    // };
+
+    isolateSchools(schools, sizes) {
+        {console.log("SIZE: ", sizes)}
+        {console.log("SCHOOLS: ", schools)}
+        {console.log("LENGTH: ", schools.length)}
+
+        const formDiv = document.getElementById('formGrid');
+        const title = document.getElementById('resultsDiv');
+
+        if (schools.length !== 0 && formDiv) {
+            if (schools.length > 10) {
+                schools = schools.slice(0,10)
+                console.log("SPLICED LENGTH: ", schools.length)
+            }
+            formDiv.setAttribute('style', 'display: none')
+            title.setAttribute('style', 'display: block')
+        } else {
+            console.log("empty school array")
+        }
+
+          return (
+              <Grid>
+                  <Grid>
+                      {schools.map(school =>
+                          <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto'}}>
+                            <Typography style={{fontSize:'20px', margin:'2%', marginTop:'0px', padding:'30px'}}>{school}<br/></Typography>
+                          </Paper>
+                      )}
+                  </Grid>
+              </Grid>
+          )
     };
 
     render() {
-
         const user = {
             race: this.state.race,
             gender: this.state.gender,
@@ -63,17 +102,17 @@ export class Start extends React.Component {
             financial_aid: this.state.financial_aid,
         }
 
-        const {schools} = this.props;
-        console.log("schools: ", this.props.schools);
+        const {schools, sizes} = this.props;
+        // console.log("PROPS: ", this.props);
 
         return (
             <main>
-                <Grid>
+                <Grid id={"formGrid"} style={{display:'block'}}>
                     <Typography style={{
                         color: '#4e4f52',
                         textAlign: 'center',
                         marginTop: '3%',
-                        paddingTop: '5%',
+                        paddingTop: '8%',
                         fontFamily: "Roboto, Helvetica, Arial, sans-serif",
                         fontWeight: 'bold'
                     }} variant='h4'>Let's Get Started</Typography>
@@ -425,14 +464,18 @@ export class Start extends React.Component {
 
                         </form>
 
-                        <div>
-                            {/*{console.log("props schools: ", this.props.schools)}*/}
-                            <Typography style={{textAlign:'center'}}>{this.isolateSchools(this.props.schools)}</Typography>
-                        </div>
-
                     </div>
-
                 </Grid>
+
+                <div id='resultsDiv' style={{display:'none'}}>
+                    {console.log("props schools: ", this.props.schools)}
+                    <div style={{marginTop:'10%', textAlign:'center', fontWeight:'bold', fontSize:'32px'}}>
+                        Results
+                    </div>
+                    <Typography style={{textAlign:'center', display:'block', padding:'3%'}}>{this.isolateSchools(schools, sizes)}</Typography>
+                </div>
+
+
 
             </main>
         );
@@ -440,9 +483,9 @@ export class Start extends React.Component {
 }
 
 const mapState = (state) => {
-    const {schools} = state;
-    // console.log("schools from state: ", schools);
-    return {schools};
+    // console.log("STATE: ", state)
+    const {schools, sizes} = state;
+    return {schools, sizes};
 };
 
 const mapDispatch = (dispatch) => {

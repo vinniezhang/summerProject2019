@@ -26,11 +26,12 @@ export default function reducer(state=initialState, action) {
             }
         }
         case RECEIVE_DATA:{
-            // console.log("action: ", action.data);
+            console.log("ACTION: ", action.data);
             return {
                 ...state,
                 isLoading: false,
-                schools: action.data
+                schools: action.data.school_names,
+                sizes: action.data.school_sizes
                 // retrieve data from api and return to frontend
             }
         }

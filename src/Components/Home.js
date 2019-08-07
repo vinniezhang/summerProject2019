@@ -23,7 +23,6 @@ export default function HomeText() {
                         showing where you fall among past students admitted to and/or attending the college.<br/><br/>
                         CATCH aims to help make finding the right educational institution simple and easy, which is why we believe that
                         limiting the number of schools catered to your needs is the way to go, as we pride quality over quantity. <br/><br/>
-                        What are you waiting for? Let's find your ideal CATCH!
                     </Typography>
                 </Grid>
             </main>

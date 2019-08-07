@@ -10,9 +10,9 @@ export const requestData = () => ({
     type: REQUEST_DATA
 });
 
-export const receiveData = data => ({
+export const receiveData = allData => ({
     type: RECEIVE_DATA,
-    data: data
+    data: allData
 })
 
 export const fetchData = (user) => {
@@ -27,7 +27,11 @@ export const fetchData = (user) => {
     let act = user.act_score;
     let act_min = null;
     let act_max = null;
-    let school_names = [];
+
+    const allData = {
+        school_names: [],
+        school_sizes: []
+    };
 
     // accounting for the min and max possible act scores
     if (act < 5){
@@ -74,19 +78,22 @@ export const fetchData = (user) => {
             console.log("schools: ", schools);
 
             Object.keys(schools).map(function (key){
-                school_names.push(schools[key]['school.name']);
-                console.log("School:", schools[key]['school.name'], ", Size: ", schools[key]['latest.student.size'], ", ACT: ", schools[key]['latest.admissions.act_scores.midpoint.cumulative'], ", Degree: ", schools[key]['school.degrees_awarded.predominant_recoded']);
+                allData.school_names.push(schools[key]['school.name']);
+                allData.school_sizes.push(schools[key]['latest.student.size']);
+                // console.log("School:", schools[key]['school.name'], ", Size: ", schools[key]['latest.student.size'], ", ACT: ", schools[key]['latest.admissions.act_scores.midpoint.cumulative'], ", Degree: ", schools[key]['school.degrees_awarded.predominant_recoded']);
             })
-
             // console.log("names: ", school_names);
-            // dispatch(requestData());
-            dispatch(receiveData(school_names));
+            // const data = {school_names, school_sizes}
+            return dispatch(receiveData(allData));
+            // return dispatch(receiveData(school_names));
+
+            // console.log("OUTPUT: ", receiveData((school_names)))
         })
     }
 
 }
 
-export const fetchSchools = (schools) => {
+export const fetchSchools = (schools) => { // never called?
     return (dispatch) => {
         dispatch(receiveData(schools))
     }
