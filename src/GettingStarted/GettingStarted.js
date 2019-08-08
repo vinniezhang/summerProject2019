@@ -60,8 +60,8 @@ export class Start extends React.Component {
               <Grid>
                   <Grid>
                       <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto', marginTop:'2%'}}>
-                          <Typography style={{fontSize:'26px', padding:'20px', paddingTop:'35px', color: '#6d0991', fontWeight:'bold'}}>User Input</Typography>
-                          <Typography style={{fontSize:'20px', padding:'1%', color:'rgb(78, 79, 82)'}}> <b>Gender:</b> {user.gender} <b>Race:</b> {user.race} <b>Income:</b> {user.financial_income} <b>Aid:</b> {user.financial_aid}<br/><br/></Typography>
+                          <Typography style={{fontSize:'26px', padding:'20px', paddingTop:'35px', color: '#6d0991', fontWeight:'bold'}}>User Information</Typography>
+                          <Typography style={{textAlign:'center',fontSize:'20px', padding:'1%',color:'rgb(78, 79, 82)'}}> <b>Gender:</b> {user.gender} &nbsp;<b>Race:</b> {user.race} &nbsp;<b>Income:</b> {user.financial_income}&nbsp; <b>Applying for Aid:</b> {user.financial_aid}<br/><br/></Typography>
                       </Paper>
                   </Grid>
                   <Grid>
