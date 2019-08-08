@@ -14,7 +14,8 @@ const initialState = {
     size:'',
     financial_income:'',
     financial_aid:'',
-    schools:[]
+    schools:[],
+    user:{}
 }
 
 export default function reducer(state=initialState, action) {
@@ -26,11 +27,13 @@ export default function reducer(state=initialState, action) {
             }
         }
         case RECEIVE_DATA:{
-            console.log("ACTION: ", action.data);
+            console.log("ACTION: ", action);
+            console.log("REDUCED USER: ", action.user)
             return {
                 ...state,
+                user: action.user,
                 isLoading: false,
-                schools: action.data
+                schools: action.schools
                 // retrieve data from api and return to frontend
             }
         }

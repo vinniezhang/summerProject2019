@@ -10,9 +10,11 @@ export const requestData = () => ({
     type: REQUEST_DATA
 });
 
-export const receiveData = allData => ({
+export const receiveData = (schools, user) => ({
     type: RECEIVE_DATA,
-    data: allData
+    schools: schools,
+    user: user
+
 })
 
 export const fetchData = (user) => {
@@ -28,22 +30,17 @@ export const fetchData = (user) => {
     let act_min = null;
     let act_max = null;
 
-    const allData = {
-        school_names: [],
-        school_sizes: []
-    };
-
     // accounting for the min and max possible act scores
     if (act < 5){
         act_min = 0;
     } else {
-        act_min = act - 5;
+        act_min = act - 4;
     }
 
     if (act > 31){
         act_max = 36;
     } else {
-        act_max = act + 5;
+        act_max = act + 4;
     }
 
     let act_range = `${act_min}..${act_max}`;
@@ -70,22 +67,18 @@ export const fetchData = (user) => {
         URL = `https://api.data.gov/ed/collegescorecard/v1/schools?school.state=${state}&school.degrees_awarded.predominant=${has_degree},&latest.admissions.act_scores.midpoint.cumulative__range=${act_range}&latest.student.size__range=20000..&_page=0,1,2,&_per_page=100,&_fields=id,school.state,school.name,school.degrees_awarded.predominant_recoded,latest.admissions.sat_scores.average.overall,latest.admissions.act_scores.midpoint.cumulative,latest.student.size&api_key=${API_KEY}`;
     }
 
-    console.log("User: ", user);
+    // console.log("User: ", user);
 
     return (dispatch) => {
         return axios.get(URL).then((response) => {
             const schools = response.data.results;
             console.log("schools: ", schools);
+            console.log("User: ", user);
 
             Object.keys(schools).map(function (key){
-                allData.school_names.push(schools[key]['school.name']);
-                allData.school_sizes.push(schools[key]['latest.student.size']);
                 // console.log("School:", schools[key]['school.name'], ", Size: ", schools[key]['latest.student.size'], ", ACT: ", schools[key]['latest.admissions.act_scores.midpoint.cumulative'], ", Degree: ", schools[key]['school.degrees_awarded.predominant_recoded']);
             })
-            // console.log("names: ", school_names);
-            // const data = {school_names, school_sizes}
-            return dispatch(receiveData(schools));
-            // return dispatch(receiveData(school_names));
+            return dispatch(receiveData(schools, user));
 
             // console.log("OUTPUT: ", receiveData((school_names)))
         })
@@ -93,9 +86,9 @@ export const fetchData = (user) => {
 
 }
 
-export const fetchSchools = (schools) => { // never called?
+export const fetchSchools = (schools, user) => { // never called?
     return (dispatch) => {
-        dispatch(receiveData(schools))
+        dispatch(receiveData(schools, user))
     }
 }
 

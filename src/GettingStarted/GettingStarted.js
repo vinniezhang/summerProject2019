@@ -37,30 +37,8 @@ export class Start extends React.Component {
         });
     };
 
-    // isolateSchools(schools) {
-    //     Object.keys(schools).map(function (key){
-    //        console.log("in function: ", schools[key]);
-    //          return (
-    //             ReactDOM.render(
-    //                 (
-    //                     <React.Fragment>
-    //                         <Grid>
-    //                             {console.log("RECEIVED DATA: ", receiveData(schools).data)}
-    //                             <Grid>
-    //                                 {/*<Grid>{schools[key]}</Grid>*/}
-    //                                 <Grid><Typography>{receiveData(schools).data}</Typography></Grid>
-    //                             </Grid>
-    //                         </Grid>
-    //                     </React.Fragment>
-    //                 ), document.getElementById('resultsGrid')
-    //        ))
-    //     })
-    // };
-
-    isolateSchools(schools, sizes) {
-        {console.log("SIZE: ", sizes)}
+    isolateSchools(schools, user) {
         {console.log("SCHOOLS: ", schools)}
-        {console.log("LENGTH: ", schools.length)}
 
         const formDiv = document.getElementById('formGrid');
         const title = document.getElementById('resultsDiv');
@@ -69,6 +47,8 @@ export class Start extends React.Component {
             if (schools.length > 10) {
                 schools = schools.slice(0,10)
                 console.log("SPLICED LENGTH: ", schools.length)
+
+
             }
             formDiv.setAttribute('style', 'display: none')
             title.setAttribute('style', 'display: block')
@@ -78,6 +58,12 @@ export class Start extends React.Component {
 
           return (
               <Grid>
+                  <Grid>
+                      <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto', marginTop:'2%'}}>
+                          <Typography style={{fontSize:'26px', padding:'20px', paddingTop:'35px', color: '#6d0991', fontWeight:'bold'}}>User Input</Typography>
+                          <Typography style={{fontSize:'20px', padding:'1%', color:'rgb(78, 79, 82)'}}> <b>Gender:</b> {user.gender} <b>Race:</b> {user.race} <b>Income:</b> {user.financial_income} <b>Aid:</b> {user.financial_aid}<br/><br/></Typography>
+                      </Paper>
+                  </Grid>
                   <Grid>
                       {schools.map(school =>
                           <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto', marginTop:'2%'}}>
@@ -473,7 +459,7 @@ export class Start extends React.Component {
                     <div style={{color:'rgb(78, 79, 82)', marginTop:'10%', textAlign:'center', fontWeight:'bold', fontSize:'32px'}}>
                         Results
                     </div>
-                    <Typography style={{textAlign:'center', display:'block', padding:'3%'}}>{this.isolateSchools(schools, sizes)}</Typography>
+                    <Typography style={{textAlign:'center', display:'block', padding:'3%'}}>{this.isolateSchools(schools, user)}</Typography>
                 </div>
 
 
@@ -485,8 +471,8 @@ export class Start extends React.Component {
 
 const mapState = (state) => {
     console.log("STATE: ", state)
-    const {schools, sizes} = state;
-    return {schools, sizes};
+    const {schools, user} = state;
+    return {schools, user};
 };
 
 const mapDispatch = (dispatch) => {
