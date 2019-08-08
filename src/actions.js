@@ -84,7 +84,7 @@ export const fetchData = (user) => {
             })
             // console.log("names: ", school_names);
             // const data = {school_names, school_sizes}
-            return dispatch(receiveData(allData));
+            return dispatch(receiveData(schools));
             // return dispatch(receiveData(school_names));
 
             // console.log("OUTPUT: ", receiveData((school_names)))

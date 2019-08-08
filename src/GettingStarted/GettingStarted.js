@@ -80,8 +80,9 @@ export class Start extends React.Component {
               <Grid>
                   <Grid>
                       {schools.map(school =>
-                          <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto'}}>
-                            <Typography style={{fontSize:'20px', margin:'2%', marginTop:'0px', padding:'30px'}}>{school}<br/></Typography>
+                          <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto', marginTop:'2%'}}>
+                            <Typography style={{fontSize:'26px', padding:'20px', paddingTop:'35px', color: '#6d0991', fontWeight:'bold'}}>{school['school.name']}</Typography>
+                              <Typography style={{fontSize:'20px', padding:'1%', color:'rgb(78, 79, 82)'}}> <b>Size:</b> {school['latest.student.size']} &nbsp; <b>Median ACT:</b> {school['latest.admissions.act_scores.midpoint.cumulative']} &nbsp; <b>Average SAT:</b> {school['latest.admissions.sat_scores.average.overall']}<br/><br/></Typography>
                           </Paper>
                       )}
                   </Grid>
@@ -469,7 +470,7 @@ export class Start extends React.Component {
 
                 <div id='resultsDiv' style={{display:'none'}}>
                     {console.log("props schools: ", this.props.schools)}
-                    <div style={{marginTop:'10%', textAlign:'center', fontWeight:'bold', fontSize:'32px'}}>
+                    <div style={{color:'rgb(78, 79, 82)', marginTop:'10%', textAlign:'center', fontWeight:'bold', fontSize:'32px'}}>
                         Results
                     </div>
                     <Typography style={{textAlign:'center', display:'block', padding:'3%'}}>{this.isolateSchools(schools, sizes)}</Typography>
@@ -483,7 +484,7 @@ export class Start extends React.Component {
 }
 
 const mapState = (state) => {
-    // console.log("STATE: ", state)
+    console.log("STATE: ", state)
     const {schools, sizes} = state;
     return {schools, sizes};
 };

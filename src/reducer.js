@@ -30,8 +30,7 @@ export default function reducer(state=initialState, action) {
             return {
                 ...state,
                 isLoading: false,
-                schools: action.data.school_names,
-                sizes: action.data.school_sizes
+                schools: action.data
                 // retrieve data from api and return to frontend
             }
         }

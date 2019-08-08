@@ -26,7 +26,7 @@ export default function ContactText() {
                 bgcolor="background.paper"
                 m={1}
                 p={1}
-                style={{ width: '30rem', height: '38rem', margin:'auto', marginTop:'10%', borderRadius:'15px'}}
+                style={{ width: '30rem', height: '38rem', margin:'auto', marginTop:'13%', borderRadius:'15px'}}
             >
                 <Typography style={{fontWeight:'bold', fontSize:'28px', textAlign:'center', paddingTop:'5%', fontFamily:'Helvetica', color:'#4e4f52'}}>Contact Us</Typography>
                 <p style={{textAlign:'center'}}>Let us know what you think!</p>
