@@ -47,8 +47,6 @@ export class Start extends React.Component {
             if (schools.length > 10) {
                 schools = schools.slice(0,10)
                 console.log("SPLICED LENGTH: ", schools.length)
-
-
             }
             formDiv.setAttribute('style', 'display: none')
             title.setAttribute('style', 'display: block')
@@ -59,12 +57,17 @@ export class Start extends React.Component {
           return (
               <Grid>
                   <Grid>
-                      <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto', marginTop:'2%'}}>
+                      <Grid style={{maxWidth:'45%', textAlign:'center', margin:'auto', marginTop:'5%'}}>
                           <Typography style={{fontSize:'26px', padding:'20px', paddingTop:'35px', color: '#6d0991', fontWeight:'bold'}}>User Information</Typography>
-                          <Typography style={{textAlign:'center',fontSize:'20px', padding:'1%',color:'rgb(78, 79, 82)'}}> <b>Gender:</b> {user.gender} &nbsp;<b>Race:</b> {user.race} &nbsp;<b>Income:</b> {user.financial_income}&nbsp; <b>Applying for Aid:</b> {user.financial_aid}<br/><br/></Typography>
-                      </Paper>
+                          <Typography style={{textAlign:'center',fontSize:'20px', padding:'1%',color:'rgb(78, 79, 82)'}}> <b>Gender:</b> {user.gender} &nbsp;<b>Race:</b> {user.race} &nbsp;<b>Income:</b> {user.financial_income}&nbsp; <b>Applying for Aid:</b> {user.financial_aid}<br/></Typography>
+                          <Typography style={{fontSize:'26px', padding:'20px', paddingTop:'35px', color: '#6d0991', fontWeight:'bold'}}>Criteria</Typography>
+                          <Typography style={{textAlign:'center',fontSize:'20px', padding:'1%',color:'rgb(78, 79, 82)'}}> <b>ACT :</b> {user.act_score} &nbsp;<b>School Size :</b> {user.size} &nbsp;<b>Degree :</b> {user.degree}&nbsp; <b>State :</b> {user.state}<br/><br/></Typography>
+                      </Grid>
                   </Grid>
                   <Grid>
+                      <div style={{color:'rgb(78, 79, 82)', marginTop:'2%', textAlign:'center', fontWeight:'bold', fontSize:'36px'}}>
+                          Results
+                      </div>
                       {schools.map(school =>
                           <Paper style={{maxWidth:'60%', textAlign:'center', margin:'auto', marginTop:'2%'}}>
                             <Typography style={{fontSize:'26px', padding:'20px', paddingTop:'35px', color: '#6d0991', fontWeight:'bold'}}>{school['school.name']}</Typography>
@@ -456,9 +459,9 @@ export class Start extends React.Component {
 
                 <div id='resultsDiv' style={{display:'none'}}>
                     {console.log("props schools: ", this.props.schools)}
-                    <div style={{color:'rgb(78, 79, 82)', marginTop:'10%', textAlign:'center', fontWeight:'bold', fontSize:'32px'}}>
-                        Results
-                    </div>
+                    {/*<div style={{color:'rgb(78, 79, 82)', marginTop:'10%', textAlign:'center', fontWeight:'bold', fontSize:'32px'}}>*/}
+                    {/*    Results*/}
+                    {/*</div>*/}
                     <Typography style={{textAlign:'center', display:'block', padding:'3%'}}>{this.isolateSchools(schools, user)}</Typography>
                 </div>
 
